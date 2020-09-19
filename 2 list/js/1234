@@ -1,0 +1,13 @@
+    function verification(contactView) {
+        contactView.$el.find(".error").remove();
+        let error = 0;
+        if (contactView.model.get("name").length == 0){
+            contactView.$el.find(".name").after( "<p class='error'>Введите валидное имя</p>" );
+            error++;
+        }
+        if (contactView.model.get("tel").replace(/-/g,"").match(/^[+0-9]{1}[0-9]{9,12}$/) === null){
+            contactView.$el.find(".tel").after( "<p class='error'>Введите валидный номер</p>" );
+            error++;
+        }
+        return error ? false : true;
+    };
